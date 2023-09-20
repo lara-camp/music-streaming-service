@@ -15,33 +15,13 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return Inertia::render('Layout',[
-        'name' => "YKM",
-        'frameworks' => [
-            "vuejs", "inertiaJs", "laravel"
-        ]
-    ]);
-})->name('application');
+    return Inertia::render('User/Page/Top');
+})->name('top');
 
-Route::get('/user/home', function () {
-    return Inertia::render('User/Home',[
-        'name' => "YKM",
-        'frameworks' => [
-            "vuejs", "inertiaJs", "laravel"
-        ],
-    ]);
-})->name('user.home');
+Route::get('/library', function () {
+    return Inertia::render('User/Page/library');
+})->name('library');
 
-Route::get('/admin/home', function () {
-    return Inertia::render('Admin/Home',[
-        'name' => "YKM",
-        'frameworks' => [
-            "vuejs", "inertiaJs", "laravel"
-        ],
-        'user' => "mgmg"
-    ]);
-})->name('admin.home');
-
-Route::post('/logout', function () {
-    return Inertia::render('Auth/Logout');
-})->name('auth.logout');
+Route::get('/liked', function () {
+    return Inertia::render('User/Page/liked');
+})->name('liked');
