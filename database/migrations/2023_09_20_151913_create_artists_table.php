@@ -11,15 +11,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('artists', function (Blueprint $table) {
             $table->bigIncrements('id')->comment('ID');
-            $table->string('name')->comment('Name');
+            $table->integer('division_id')->unsigned()->comment('Display Id');
             $table->string('display_name')->comment('Display Name');
             $table->string('email')->unique()->comment('Email');
             $table->string('password')->comment('Password');
+            $table->string('image_s3_path')->comment('Image Path');
+            $table->string('thumbnail_s3_path')->comment('Thumbnail Path');
+            $table->string('play_counter')->comment('Play Counter');
             $table->tinyInteger('type')->default(0)->comment('0:normal_user, 1:silver, 2:gold, 3:diamond, 4:platinum');
-            $table->timestamp('email_verified_at')->nullable();
-            $table->rememberToken();
             $table->timestamps();
             $table->softDeletes()->comment('Deleted_at');
         });
@@ -30,6 +31,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('artists');
     }
 };
