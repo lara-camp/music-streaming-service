@@ -25,3 +25,7 @@ Route::get('/library', function () {
 Route::get('/liked', function () {
     return Inertia::render('User/Page/liked');
 })->name('liked');
+
+Route::get('/album/detail', function () {
+    return Inertia::render('User/Page/albumDetail');
+})->name('albumDetail');
