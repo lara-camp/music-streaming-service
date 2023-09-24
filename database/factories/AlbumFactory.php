@@ -22,7 +22,9 @@ class AlbumFactory extends Factory
             'artist_id' => fake()->randomElement($artist_id),
             'title' => fake()->sentence(10),
             'release_date' => fake()->dateTime(),
-            'image_url' => fake()->imageUrl(),
+            'image_s3_path' => fake()->imageUrl(),
+            'thumbnail_s3_path' => fake()->filePath(),
+            'play_counter' => fake()->randomNumber(1,100),
         ];
     }
 }

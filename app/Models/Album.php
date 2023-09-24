@@ -14,7 +14,9 @@ class Album extends Model
         'artist_id',
         'title',
         'release_date',
-        'image_url'
+        'image_s3_path',
+        'thumbnail_s3_path',
+        'play_counter'
     ];
 
     public function artists() {

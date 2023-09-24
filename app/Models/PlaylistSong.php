@@ -10,6 +10,8 @@ class PlaylistSong extends Model
 {
     use HasFactory, SoftDeletes;
 
+    protected $table = 'playlist_song';
+
     protected $fillable = [ 
         'playlist_id',
         'song_id'

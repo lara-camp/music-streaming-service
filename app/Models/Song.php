@@ -10,12 +10,28 @@ class Song extends Model
 {
     use HasFactory, SoftDeletes;
 
+    protected $fillable = [
+        'album_id',
+        'admin_id',
+        'publish_type',
+        'title',
+        'duration',
+        'language',
+        'bitrate',
+        'image_s3_path',
+        'thumbnail_s3_path',
+        'audio_s3_path',
+        'likes_count',
+        'play_counter',
+        'youtube_url'
+    ];
+
     public function albums() {
         return $this->belongsTo(Album::class);
     }
 
     public function playlists() {
-        return $this->belongsToMany(Playlist::class, 'playlist_songs');
+        return $this->belongsToMany(Playlist::class, 'playlist_song');
     }
 
     public function users() {

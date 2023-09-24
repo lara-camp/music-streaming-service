@@ -18,11 +18,11 @@ class ArtistFactory extends Factory
     public function definition(): array
     {
         return [
-            'division_id' => fake()->numberBetween(1,14),
+            'name' => fake()->name(),
             'display_name' => fake()->userName(),
             'email' => fake()->unique()->safeEmail(),
             'password' => Hash::make('soul'), // password
-            'image_s3_path' => fake()->filePath(),
+            'image_s3_path' => fake()->imageUrl(),
             'thumbnail_s3_path' => fake()->filePath(),
             'play_counter' => fake()->randomNumber(1,100),
             'type' => fake()->numberBetween(0,3),

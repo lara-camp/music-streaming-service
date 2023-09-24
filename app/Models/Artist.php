@@ -10,15 +10,19 @@ class Artist extends Model
 {
     use HasFactory, SoftDeletes;
 
-    protected $fillable = [ 
-        'division_id',
+    protected $fillable = [
+        'name',
         'display_name',
-        'biography',
-        'image_url'
+        'email',
+        'password',
+        'image_s3_path',
+        'thumbnail_s3_path',
+        'play_counter',
+        'type'
     ];
 
     public function genres() {
-        return $this->belongsToMany(Genre::class, 'artist_genres');
+        return $this->belongsToMany(Genre::class, 'artist_genre');
     }
 
     public function albums() {

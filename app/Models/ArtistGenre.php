@@ -10,6 +10,8 @@ class ArtistGenre extends Model
 {
     use HasFactory, SoftDeletes;
 
+    protected $table = 'artist_genre';
+
     protected $fillable = [ 
         'artist_id',
         'genre_id'

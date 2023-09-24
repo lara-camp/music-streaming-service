@@ -13,13 +13,13 @@ return new class extends Migration
     {
         Schema::create('artists', function (Blueprint $table) {
             $table->bigIncrements('id')->comment('ID');
-            $table->integer('division_id')->unsigned()->comment('Display Id');
+            $table->string('name')->comment('Name');
             $table->string('display_name')->comment('Display Name');
             $table->string('email')->unique()->comment('Email');
             $table->string('password')->comment('Password');
-            $table->string('image_s3_path')->comment('Image Path');
-            $table->string('thumbnail_s3_path')->comment('Thumbnail Path');
-            $table->string('play_counter')->comment('Play Counter');
+            $table->string('image_s3_path')->nullable()->comment('Image Path');
+            $table->string('thumbnail_s3_path')->nullable()->comment('Thumbnail Path');
+            $table->string('play_counter')->nullable()->comment('Play Counter');
             $table->tinyInteger('type')->default(0)->comment('0:normal_user, 1:silver, 2:gold, 3:diamond, 4:platinum');
             $table->timestamps();
             $table->softDeletes()->comment('Deleted_at');

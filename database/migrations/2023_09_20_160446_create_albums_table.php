@@ -16,7 +16,9 @@ return new class extends Migration
             $table->foreignId('artist_id')->references('id')->on('artists')->constrained()->onDelete('cascade')->comment("Artist Id");
             $table->string('title')->comment('Title');
             $table->timestamp('release_date')->nullable()->comment('Release Date');
-            $table->string('image_url')->nullable()->comment('Image Url');
+            $table->string('image_s3_path')->nullable()->comment('Image Path');
+            $table->string('thumbnail_s3_path')->nullable()->comment('Thumbnail Path');
+            $table->string('play_counter')->nullable()->comment('Play Counter');
             $table->timestamps();
             $table->softDeletes()->comment('Deleted_at');
         });

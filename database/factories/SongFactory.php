@@ -25,8 +25,13 @@ class SongFactory extends Factory
             'publish_type' => fake()->numberBetween(0,2),
             'title' => fake()->sentence(10),
             'duration' => fake()->time('i:s'),
-            'image_url' => fake()->imageUrl(),
-            'audio_url' => fake()->url(),
+            'language' => fake()->languageCode(),
+            'bitrate' => fake()->numberBetween(128, 320) . ' kbps',
+            'image_s3_path' => fake()->imageUrl(),
+            'thumbnail_s3_path' => fake()->filePath(),
+            'audio_s3_path' => fake()->filePath(),
+            'likes_count' => fake()->randomNumber(),
+            'play_counter' => fake()->randomNumber(1,100),
             'youtube_url' => fake()->url(),
         ];
     }
