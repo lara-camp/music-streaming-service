@@ -3,7 +3,7 @@
       <div class="p-8">
         <button
             type="button"
-            class="text-white text-2xl font-semibold hover:underline cursor-pointer"
+            class="text-white text-2xl font-semibold hover:underline cursor-pointer px-4"
         >
             Podcasts to make you smarter
         </button>
