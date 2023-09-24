@@ -2,6 +2,7 @@
 
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ContactUsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,3 +26,6 @@ Route::get('/library', function () {
 Route::get('/liked', function () {
     return Inertia::render('User/Page/liked');
 })->name('liked');
+
+Route::get('/contactus',[ContactUsController::class,'form'])->name('contactus.form');
+Route::post('/contactus',[ContactUsController::class,'Sendmail'])->name('contactus.send');
