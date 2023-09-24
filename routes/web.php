@@ -27,5 +27,9 @@ Route::get('/liked', function () {
     return Inertia::render('User/Page/liked');
 })->name('liked');
 
+Route::get('/aboutus', function () {
+    return Inertia::render('User/Page/AboutUs');
+})->name('aboutus');
+
 Route::get('/contactus',[ContactUsController::class,'form'])->name('contactus.form');
 Route::post('/contactus',[ContactUsController::class,'Sendmail'])->name('contactus.send');
