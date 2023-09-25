@@ -2,6 +2,7 @@
 
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ContactUsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,3 +39,11 @@ Route::get('/login', function () {
 Route::get('/search', function () {
     return Inertia::render('User/Page/search');
 })->name('search');
+
+Route::get('/aboutus', function () {
+    return Inertia::render('User/Page/AboutUs');
+})->name('aboutus');
+
+Route::get('/contactus',[ContactUsController::class,'form'])->name('contactus.form');
+Route::post('/contactus',[ContactUsController::class,'Sendmail'])->name('contactus.send');
+
