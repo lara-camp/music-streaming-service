@@ -11,10 +11,10 @@ import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
 /* import specific icons */
-import { faHouse, faBook, faStar, faCirclePlay, faHeart, faEllipsis, faClock } from '@fortawesome/free-solid-svg-icons'
+import { faHouse, faBook, faStar, faCirclePlay, faHeart, faEllipsis, faClock, faMagnifyingGlass, faMusic, faPlus } from '@fortawesome/free-solid-svg-icons'
 
 /* add icons to the library */
-library.add(faHouse, faBook, faStar, faCirclePlay, faHeart, faEllipsis, faClock)
+library.add(faHouse, faBook, faStar, faCirclePlay, faHeart, faEllipsis, faClock, faMagnifyingGlass, faMusic, faPlus)
 
 const app = createInertiaApp({
     progress: {

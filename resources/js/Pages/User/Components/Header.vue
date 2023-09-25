@@ -22,6 +22,14 @@
       class="bg-black hover:bg-[#282828] rounded-full p-0.5 mr-8 mt-0.5 cursor-pointer"
     >
       <div class="flex items-center">
+        <div class="">
+          <Link :href="route('login', { type: 'signup' })">
+            <p class="text-white inline mr-3">Sign Up</p>
+          </Link>
+          <Link :href="route('login', { type: 'signin' })">
+            <p class="text-white inline mr-3">Sign In</p>
+          </Link>
+        </div>
         <img
           class="rounded-full"
           width="27"

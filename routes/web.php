@@ -29,3 +29,12 @@ Route::get('/liked', function () {
 Route::get('/album/detail', function () {
     return Inertia::render('User/Page/albumDetail');
 })->name('albumDetail');
+
+Route::get('/login', function () {
+    $type = request()->query('type');
+    return Inertia::render('User/Page/login', ['type' => $type]);
+})->name('login');
+
+Route::get('/search', function () {
+    return Inertia::render('User/Page/search');
+})->name('search');

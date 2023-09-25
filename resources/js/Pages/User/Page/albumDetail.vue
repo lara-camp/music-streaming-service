@@ -1,5 +1,5 @@
 <template>
-  <div class="p-8 overflow-x-hidden">
+  <div class="p-8 overflow-x-hidden min-h-full flex flex-col">
     <button
       type="button"
       class="text-white text-2xl font-semibold hover:underline cursor-pointer"
@@ -71,7 +71,7 @@
     </div>
     <div class="border-b border-b-[#2A2A2A] mt-2"></div>
     <div class="mb-4"></div>
-    <ul class="w-full">
+    <ul class="w-full flex-grow overflow-y-auto">
       <SongList :tracks="albumDetail.tracks" />
     </ul>
   </div>
