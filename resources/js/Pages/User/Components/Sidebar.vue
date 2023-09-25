@@ -5,6 +5,9 @@
       <Link :href="route('top')" class="ml-[0.5px]">
         <NavLink linkLabel="Home" aweIcon="fa-house"></NavLink>
       </Link>
+      <Link :href="route('search')" class="ml-[0.5px]">
+        <NavLink linkLabel="Search" aweIcon="fa-magnifying-glass"></NavLink>
+      </Link>
       <Link :href="route('library')" class="ml-[0.5px]">
         <NavLink linkLabel="Library" aweIcon="fa-book"></NavLink>
       </Link>
