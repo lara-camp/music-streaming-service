@@ -2,17 +2,20 @@
   <div id="SideNav" class="h-[100%] p-6 w-[240px] fixed z-50 bg-black">
     <div class="my-8"></div>
     <ul>
-      <Link :href="route('top')" class="ml-[0.5px]">
-        <NavLink linkLabel="Home" aweIcon="fa-house"></NavLink>
+      <Link :href="changeRoute('top')" class="ml-[0.5px]">
+        <NavLink :linkLabel="$t('message.home')" aweIcon="fa-house"></NavLink>
       </Link>
-      <Link :href="route('search')" class="ml-[0.5px]">
-        <NavLink linkLabel="Search" aweIcon="fa-magnifying-glass"></NavLink>
+      <Link :href="changeRoute('search')" class="ml-[0.5px]">
+        <NavLink
+          :linkLabel="$t('message.search')"
+          aweIcon="fa-magnifying-glass"
+        ></NavLink>
       </Link>
-      <Link :href="route('library')" class="ml-[0.5px]">
-        <NavLink linkLabel="Library" aweIcon="fa-book"></NavLink>
+      <Link :href="changeRoute('library')" class="ml-[0.5px]">
+        <NavLink :linkLabel="$t('message.library')" aweIcon="fa-book"></NavLink>
       </Link>
-      <Link :href="route('liked')" class="ml-[0.5px]">
-        <NavLink linkLabel="Liked" aweIcon="fa-star"></NavLink>
+      <Link :href="changeRoute('liked')" class="ml-[0.5px]">
+        <NavLink :linkLabel="$t('message.liked')" aweIcon="fa-star"></NavLink>
       </Link>
       <div class="py-3.5"></div>
     </ul>
@@ -30,6 +33,12 @@ import NavLink from "./NavLink.vue";
 
 export default {
   components: { NavLink },
+  methods: {
+    changeRoute(routeName) {
+      const currentUrl = "/" + this.$i18n.locale;
+      return routeName == "top" ? currentUrl : currentUrl + "/" + routeName;
+    },
+  },
 };
 </script>
 

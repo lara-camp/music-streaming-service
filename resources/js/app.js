@@ -13,8 +13,21 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 /* import specific icons */
 import { faHouse, faBook, faStar, faCirclePlay, faHeart, faEllipsis, faClock, faMagnifyingGlass, faMusic, faPlus } from '@fortawesome/free-solid-svg-icons'
 
+import { createI18n } from "vue-i18n";
+
 /* add icons to the library */
 library.add(faHouse, faBook, faStar, faCirclePlay, faHeart, faEllipsis, faClock, faMagnifyingGlass, faMusic, faPlus)
+
+import en from "./lang/en.json";
+import my from "./lang/my.json";
+
+const i18n = createI18n({
+    locale: "en",
+    messages: {
+        en,
+        my,
+    },
+});
 
 const app = createInertiaApp({
     progress: {
@@ -36,6 +49,7 @@ const app = createInertiaApp({
         .component("Link", Link)
         .component("Head", Head)
         .use(ZiggyVue)
+        .use(i18n)
         .mount(el)
     }
 });
