@@ -1,5 +1,5 @@
 <template>
-  <Link :href="route('albumDetail')">
+  <Link :href="changeRoute('albumDetail')">
     <div
       class="bg-[#111111] p-4 rounded-md m-2 hover:bg-[#252525] cursor-pointer"
     >
@@ -16,6 +16,11 @@ export default {
     image: String,
     title: String,
     subTitle: String,
+  },
+  methods: {
+    changeRoute(routeName) {
+      return "/" + this.$i18n.locale + "/album/detail";
+    },
   },
 };
 </script>
