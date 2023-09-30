@@ -22,11 +22,27 @@
       class="bg-black hover:bg-[#282828] rounded-full p-0.5 mr-8 mt-0.5 cursor-pointer"
     >
       <div class="flex items-center">
+        <div>
+          <button
+            type="button"
+            class="text-white hover:underline cursor-pointer px-4"
+            @click="changeLocale('en')"
+          >
+            English
+          </button>
+          <button
+            type="button"
+            class="text-white hover:underline cursor-pointer px-4"
+            @click="changeLocale('my')"
+          >
+            မြန်မာ
+          </button>
+        </div>
         <div class="">
-          <Link :href="route('login', { type: 'signup' })">
+          <Link :href="changeRoute('login', { type: 'signup' })">
             <p class="text-white inline mr-3">Sign Up</p>
           </Link>
-          <Link :href="route('login', { type: 'signin' })">
+          <Link :href="changeRoute('login', { type: 'signin' })">
             <p class="text-white inline mr-3">Sign In</p>
           </Link>
           <Link method="post" as="button" :href="route('user.logout')">
@@ -61,7 +77,16 @@
 </template>
 
 <script>
-export default {};
+export default {
+  methods: {
+    changeLocale(locale) {
+      this.$i18n.locale = locale;
+    },
+    changeRoute(routeName, params) {
+      return "/" + this.$i18n.locale + "/" + routeName + "?type=" + params.type;
+    },
+  },
+};
 </script>
 
 <style>
