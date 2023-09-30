@@ -3,6 +3,7 @@
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ContactUsController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -44,6 +45,10 @@ Route::get('/aboutus', function () {
     return Inertia::render('User/Page/AboutUs');
 })->name('aboutus');
 
-Route::get('/contactus',[ContactUsController::class,'form'])->name('contactus.form');
-Route::post('/contactus',[ContactUsController::class,'Sendmail'])->name('contactus.send');
+Route::get('/contactus', [ContactUsController::class, 'form'])->name('contactus.form');
+Route::post('/contactus', [ContactUsController::class, 'Sendmail'])->name('contactus.send');
 
+Route::post('/login', [UserController::class, 'login'])->name('user.login');
+Route::post('/register', [UserController::class, 'register'])->name('user.register');
+Route::post('/logout', [UserController::class, 'logout'])->name('user.logout');
+Route::post('/forgotpsw', [UserController::class, 'forgotPsw'])->name('user.forgotpsw');
