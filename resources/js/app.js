@@ -11,12 +11,12 @@ import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
 /* import specific icons */
-import { faHouse, faBook, faStar, faCirclePlay, faHeart, faEllipsis, faClock, faMagnifyingGlass, faMusic, faPlus } from '@fortawesome/free-solid-svg-icons'
+import { faHouse, faBook, faStar, faCirclePlay, faHeart, faEllipsis, faClock, faMagnifyingGlass, faMusic, faPlus, faPlay } from '@fortawesome/free-solid-svg-icons'
 
 import { createI18n } from "vue-i18n";
 
 /* add icons to the library */
-library.add(faHouse, faBook, faStar, faCirclePlay, faHeart, faEllipsis, faClock, faMagnifyingGlass, faMusic, faPlus)
+library.add(faHouse, faBook, faStar, faCirclePlay, faHeart, faEllipsis, faClock, faMagnifyingGlass, faMusic, faPlus, faPlay)
 
 import en from "./lang/en.json";
 import my from "./lang/my.json";
