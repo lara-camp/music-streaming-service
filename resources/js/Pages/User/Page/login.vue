@@ -18,10 +18,13 @@
           >in</span
         >
       </div>
-      <p class="text-gray-100 text-center">
-        or use email your account{{ type }}
-      </p>
-      <form id="signin" action="" class="sm:w-2/3 w-full px-4 lg:px-0 mx-auto">
+      <p class="text-gray-100 text-center">or use email your account</p>
+      <form
+        @submit.prevent="login"
+        id="signin"
+        action=""
+        class="sm:w-2/3 w-full px-4 lg:px-0 mx-auto"
+      >
         <div class="pb-2 pt-4">
           <input
             type="email"
@@ -29,7 +32,9 @@
             id="email"
             placeholder="Email"
             class="block w-full p-2 text-md rounded-sm bg-black text-white"
+            v-model="loginForm.email"
           />
+          <div v-if="errors.email" class="text-red-600">{{ errors.email }}</div>
         </div>
         <div class="pb-2 pt-4">
           <input
@@ -38,22 +43,38 @@
             name="password"
             id="password"
             placeholder="Password"
+            v-model="loginForm.password"
           />
+          <div v-if="errors.password" class="text-red-600">
+            {{ errors.password }}
+          </div>
         </div>
         <div
-          class="text-right text-gray-400 hover:underline hover:text-gray-100"
+          class="text-right text-gray-400 hover:underline hover:text-gray-100 text-sm"
         >
-          <!-- <a href="#">Forgot your password?</a> -->
           <Link :href="route('login', { type: 'forgotps' })"
             >Forgot your password?</Link
           >
         </div>
+        <div>
+          <input
+            v-model="loginForm.remember"
+            type="checkbox"
+            name="remember"
+            id="remember"
+          />
+          <label for="remember" class="text-white ms-3">Remember Me</label>
+        </div>
         <div class="px-4 pb-2 pt-4">
           <button
+            type="submit"
             class="uppercase block w-full p-2 text-md rounded-full bg-indigo-500 hover:bg-indigo-600 focus:outline-none"
           >
             sign in
           </button>
+        </div>
+        <div v-if="$page.props.flash.message" class="text-red-500 text-center">
+          {{ $page.props.flash.message }}
         </div>
       </form>
     </div>
@@ -79,7 +100,12 @@
         >
       </div>
       <p class="text-gray-100 text-center">or use email your account</p>
-      <form id="signup" action="" class="sm:w-2/3 w-full px-4 lg:px-0 mx-auto">
+      <form
+        @submit.prevent="register"
+        id="signup"
+        action=""
+        class="sm:w-2/3 w-full px-4 lg:px-0 mx-auto"
+      >
         <div class="pb-2 pt-4">
           <input
             type="text"
@@ -87,7 +113,22 @@
             id="signupname"
             placeholder="Name"
             class="block w-full p-2 text-md rounded-sm bg-black text-white"
+            v-model="form.name"
           />
+          <div v-if="errors.name" class="text-red-600">{{ errors.name }}</div>
+        </div>
+        <div class="pb-2 pt-4">
+          <input
+            type="text"
+            name="displayname"
+            id="displayname"
+            placeholder="Display Name"
+            class="block w-full p-2 text-md rounded-sm bg-black text-white"
+            v-model="form.displayName"
+          />
+          <div v-if="errors.displayName" class="text-red-600">
+            {{ errors.displayName }}
+          </div>
         </div>
         <div class="pb-2 pt-4">
           <input
@@ -96,7 +137,9 @@
             id="signupemail"
             placeholder="Email"
             class="block w-full p-2 text-md rounded-sm bg-black text-white"
+            v-model="form.email"
           />
+          <div v-if="errors.email" class="text-red-600">{{ errors.email }}</div>
         </div>
         <div class="pb-2 pt-4">
           <input
@@ -105,7 +148,11 @@
             name="signuppassword"
             id="signuppassword"
             placeholder="Password"
+            v-model="form.password"
           />
+          <div v-if="errors.password" class="text-red-600">
+            {{ errors.password }}
+          </div>
         </div>
         <div class="pb-2 pt-4">
           <input
@@ -114,7 +161,11 @@
             name="confirmpassword"
             id="confirmpassword"
             placeholder="Confirm Password"
+            v-model="form.confirmPassword"
           />
+          <div v-if="errors.confirmPassword" class="text-red-600">
+            {{ errors.confirmPassword }}
+          </div>
         </div>
         <div
           class="text-center text-gray-400 hover:underline hover:text-gray-100"
@@ -125,6 +176,7 @@
         </div>
         <div class="px-4 pb-2 pt-4">
           <button
+            type="submit"
             class="uppercase block w-full p-2 text-md rounded-full bg-indigo-500 hover:bg-indigo-600 focus:outline-none"
           >
             sign up
@@ -140,7 +192,12 @@
   >
     <div class="lg:w-2/4">
       <p class="text-gray-100 text-xl text-center pb-2">Forgot password?</p>
-      <form id="forgot" action="" class="sm:w-2/3 w-full px-4 lg:px-0 mx-auto">
+      <form
+        @submit.prevent="forgotPsw"
+        id="forgot"
+        action=""
+        class="sm:w-2/3 w-full px-4 lg:px-0 mx-auto"
+      >
         <div class="pb-4 pt-4">
           <input
             type="email"
@@ -148,7 +205,9 @@
             id="forgotemail"
             placeholder="Email"
             class="block w-full p-2 text-md rounded-sm bg-black text-white"
+            v-model="forgotPswForm.email"
           />
+          <div v-if="errors.email" class="text-red-600">{{ errors.email }}</div>
         </div>
 
         <div class="pb-2 pt-4 flex justify-center">
@@ -157,6 +216,12 @@
           >
             send password reset link
           </button>
+        </div>
+        <div
+          v-if="$page.props.flash.message"
+          class="text-green-700 text-center"
+        >
+          {{ $page.props.flash.message }}
         </div>
       </form>
     </div>
@@ -209,9 +274,50 @@
   </div>
 </template>
 <script>
+import { useForm, post, route } from "@inertiajs/inertia-vue3";
 export default {
   props: {
     type: String,
+    errors: Object,
+  },
+  setup() {
+    const form = useForm({
+      name: "",
+      displayName: "",
+      email: "",
+      password: "",
+      confirmPassword: "",
+    });
+    const loginForm = useForm({
+      email: "",
+      password: "",
+      remember: false,
+    });
+    const forgotPswForm = useForm({
+      email: "",
+    });
+    return {
+      form,
+      loginForm,
+      forgotPswForm,
+    };
+  },
+  methods: {
+    register() {
+      this.$inertia.post("/register", this.form, {
+        preserveScroll: true,
+      });
+    },
+    login() {
+      this.$inertia.post("/login", this.loginForm, {
+        preserveScroll: true,
+      });
+    },
+    forgotPsw() {
+      this.$inertia.post("/forgotpsw", this.forgotPswForm, {
+        preserveScroll: true,
+      });
+    },
   },
 };
 </script>

@@ -3,6 +3,7 @@
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ContactUsController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -52,3 +53,7 @@ Route::prefix('{locale?}')->where(['locale' => 'en|my'])->group(function () {
     Route::post('/contactus', [ContactUsController::class, 'Sendmail'])->name('contactus.send');
 });
 
+Route::post('/login', [UserController::class, 'login'])->name('user.login');
+Route::post('/register', [UserController::class, 'register'])->name('user.register');
+Route::post('/logout', [UserController::class, 'logout'])->name('user.logout');
+Route::post('/forgotpsw', [UserController::class, 'forgotPsw'])->name('user.forgotpsw');

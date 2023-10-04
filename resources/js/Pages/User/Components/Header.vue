@@ -45,6 +45,9 @@
           <Link :href="changeRoute('login', { type: 'signin' })">
             <p class="text-white inline mr-3">Sign In</p>
           </Link>
+          <Link method="post" as="button" :href="route('user.logout')">
+            <p class="text-white inline mr-3">Sign Out</p>
+          </Link>
         </div>
         <img
           class="rounded-full"
