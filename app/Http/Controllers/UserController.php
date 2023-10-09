@@ -6,27 +6,41 @@ use App\Http\Requests\LoginUserRequest;
 use App\Http\Requests\RegisterUserRequest;
 use App\Http\Requests\ResetPasswordRequest;
 use App\Models\User;
+use App\Models\Artist;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\SendMail;
 use Illuminate\Support\Facades\Session;
+use Inertia\Inertia;
 
 class UserController extends Controller
 {
     public function login(LoginUserRequest $request)
     {
         $user = User::where('email', $request->email)->first();
-        if ($user) {
-            if (!Hash::check($request->password, $user->password)) {
-                return redirect()->route('login', ['type' => 'signin'])->with('message', 'Incorrect password!');
-            } else {
-                if ($request->remember == true) {
-                    $rememberToken = $user->createToken('auth_token')->plainTextToken;
-                    $user->update(['remember_token' => $rememberToken]);
-                    Session::put('remember_token', $rememberToken);
+        $artist = Artist::where('email', $request->email)->first();
+        if ($user || $artist) {
+            if ($user) {
+                if (!Hash::check($request->password, $user->password)) {
+                    return redirect()->route('login', ['type' => 'signin'])->with('message', 'Incorrect password!');
+                } else {
+                    if ($request->remember == true) {
+                        $rememberToken = $user->createToken('auth_token')->plainTextToken;
+                        $user->update(['remember_token' => $rememberToken]);
+                        Session::put('remember_token', $rememberToken);
+                    }
+                    return redirect()->route('top')->with(['user' => $user]);
                 }
-                return redirect()->route('top');
+            }
+            if ($artist) {
+                if (!Hash::check($request->password, $artist->password)) {
+                    return redirect()->route('login', ['type' => 'signin'])->with('message', 'Incorrect password!');
+                } else {
+                    $rememberToken = $artist->createToken('auth_token')->plainTextToken;
+                    Session::put('remember_token', $rememberToken);
+                    return redirect()->route('top')->with(['artist' => $artist]);
+                }
             }
         }
         return redirect()->route('login', ['type' => 'signin'])->with('message', 'no user!');

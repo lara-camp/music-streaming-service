@@ -3,9 +3,8 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Support\Facades\Validator;
 
-class LoginUserRequest extends FormRequest
+class CreateArtistRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,8 +22,10 @@ class LoginUserRequest extends FormRequest
     public function rules(): array
     {
         return [
-            "email" => "required|email",
-            "password" => "required",
+            'name' => 'required|min:2',
+            'displayName' => 'required',
+            'email' => 'required|email|unique:users',
+            'password' => 'required',
         ];
     }
     /**
@@ -35,8 +36,11 @@ class LoginUserRequest extends FormRequest
     public function messages()
     {
         return [
+            'name.required' => 'name field is required!',
+            'name.min' => 'name field must be more than 2 character!',
+            'displayName.required' => 'display name field is required!',
             'email.required' => 'email field is required!',
-            'email.email' => 'pls, change mail format!',
+            'email.unique' => 'invalid email!',
             'password.required' => 'password field is required!',
         ];
     }
