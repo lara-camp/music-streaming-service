@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ArtistController;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ContactUsController;
@@ -57,3 +58,9 @@ Route::post('/login', [UserController::class, 'login'])->name('user.login');
 Route::post('/register', [UserController::class, 'register'])->name('user.register');
 Route::post('/logout', [UserController::class, 'logout'])->name('user.logout');
 Route::post('/forgotpsw', [UserController::class, 'forgotPsw'])->name('user.forgotpsw');
+Route::get('/artists/create', [ArtistController::class, 'create'])->name('artists.create');
+Route::post('/artists/create', [ArtistController::class, 'store'])->name('artists.store');
+Route::get('/artists/{id}/edit', [ArtistController::class, 'edit'])->name('artists.edit');
+Route::get('/artist/{id}/show', [ArtistController::class, 'show'])->name('artists.show');
+Route::post('/artist/{id}/update', [ArtistController::class, 'update'])->name('artists.update');
+Route::delete('/artist/{id}/delete', [ArtistController::class, 'delete'])->name('artists.delete');

@@ -49,12 +49,34 @@
             <p class="text-white inline mr-3">Sign Out</p>
           </Link>
         </div>
+
         <img
+          v-if="$page.props.flash.artist"
+          class="rounded-full"
+          width="27"
+          :src="'/artists/' + $page.props.flash.artist.image_s3_path"
+        />
+        <img
+          v-else
           class="rounded-full"
           width="27"
           src="https://yt3.ggpht.com/e9o-24_frmNSSVvjS47rT8qCHgsHNiedqgXbzmrmpsj6H1ketcufR1B9vLXTZRa30krRksPj=s88-c-k-c0x00ffffff-no-rj-mo"
         />
-        <div class="text-white text-[14px] ml-1.5 font-semibold">
+
+        <div
+          v-if="$page.props.flash.user"
+          class="text-white text-[14px] ml-1.5 font-semibold"
+        >
+          {{ $page.props.flash.user.name }}
+        </div>
+        <div
+          v-else-if="$page.props.flash.artist"
+          class="text-white text-[14px] ml-1.5 font-semibold"
+          @click="showDetail($page.props.flash.artist.id)"
+        >
+          {{ $page.props.flash.artist.name }}
+        </div>
+        <div v-else class="text-white text-[14px] ml-1.5 font-semibold">
           John Weeks Dev
         </div>
         <!-- <ChevronDown v-if="!openMenu" @click="openMenu = true" fillColor="#FFFFFF" :size="25" />
@@ -84,6 +106,10 @@ export default {
     },
     changeRoute(routeName, params) {
       return "/" + this.$i18n.locale + "/" + routeName + "?type=" + params.type;
+    },
+    showDetail(id) {
+      var getId = id;
+      this.$inertia.get("/artist/" + getId + "/show");
     },
   },
 };
